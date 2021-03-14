@@ -123,11 +123,12 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
-         Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
-         tweets.add(0, tweet);
-         adapter.notifyItemInserted(0);
-         rvTweets.smoothScrollToPosition(0);
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
+            tweets.add(0, tweet);
+            adapter.notifyItemInserted(0);
+            rvTweets.smoothScrollToPosition(0);
         }
 
     }
